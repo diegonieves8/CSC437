@@ -1,0 +1,13 @@
+:root {
+  --color-bg-page: rgb(26, 26, 26); 
+
+  --color-bg-header: rgb(15, 15, 15);
+
+  --color-text-default: rgb(224, 224, 224);
+
+  --color-text-header: rgb(255, 255, 255);  
+
+  --color-accent-primary: rgb(78, 168, 222);   
+  --color-accent-secondary: rgb(157, 78, 221); 
+  --color-accent-hover: rgb(100, 223, 223);    
+}

@@ -1,0 +1,21 @@
+body {
+  background-color: var(--color-bg-page);
+  color: var(--color-text-default);
+}
+
+header {
+  background-color: var(--color-bg-header);
+  color: var(--color-text-header);
+}
+
+a {
+  color: var(--color-accent-primary);
+}
+
+a:hover {
+  color: var(--color-accent-hover);
+}
+
+h1, h2, h3 {
+  color: var(--color-accent-secondary);
+}
