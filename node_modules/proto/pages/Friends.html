@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
     <head>
+        <link rel="stylesheet" href="../style/reset.css">
         <link rel="stylesheet" href="../style/tokens.css">
         <link rel="stylesheet" href="../style/pages.css">
         <link rel="stylesheet" href="../style/Friends.css">
@@ -9,11 +10,36 @@
         <header>
             <h1> Your Friends </h1>
         </header>
-        <a href="index.html">Back to Home Page</a>
-        <div>List of Friends</div>
-        <img src="../assets/optimus_prime.png"/>
-        <div>1. CartopMonster19</div>
-        <img src="../assets/ninja_skin.png"/>
-        <div>FunkyMonkey</div>
+
+         <nav class = "nav-bar">
+            <svg class="icon">
+                <use href="../assets/icons/sprites.svg#account"></use>
+            </svg>
+ 
+            <a href="Rankings.html">Make your own rankings</a>
+            <svg class="icon">
+                <use href="../assets/icons/sprites.svg#rankings"></use>
+            </svg>
+
+            <a href="HotTakes.html">Hot Takes</a>
+
+            <a href="Friends.html"> Friend List</a>
+            <svg class="icon">
+                <use href="../assets/icons/sprites.svg#friends"></use>
+            </svg>
+        </nav>
+
+        <section class="card-grid">
+            <div class="card">
+                <img src="../assets/optimus_prime.png"/>
+                <p>CartopMonster19</p>
+            </div>
+
+            <div class="card">
+                <img src="../assets/ninja_skin.png"/>
+                <p>FunkyMonky</p>
+            </div>
+        </section>
+
     </body>
 </html>
