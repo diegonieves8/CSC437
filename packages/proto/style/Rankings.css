@@ -1,0 +1,58 @@
+/* First two boxes for one region */
+
+.first2-grid {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    padding: 20px;
+}
+
+.first2-card {
+    background: #1a1a1a; 
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    width: 250px;
+    height: 250px;
+}
+
+.number1{
+    color: yellow;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+.number2{
+    color: silver;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+/*Other boxes for different region */
+
+.rest-grid {
+    display: flex;
+    justify-content: center;
+    gap: 150px;
+    padding: 20px;
+}
+
+.rest-card {
+    background: #1a1a1a; 
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    width: 250px;
+    height: 250px;
+}
+
+.rest-card p {
+    padding: 10px;
+    color: white;
+    font-size: 1rem;
+}
+
+
+.logos{
+    display: flex;
+    width: 200px;
+    height: 200px;
+}
