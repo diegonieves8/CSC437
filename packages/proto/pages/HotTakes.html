@@ -44,17 +44,39 @@
             <button class="post-btn">Post</button>
         </section>
 
-    <!-- Forum topics header -->
-    <section class="forum-header">
-      <p>Topic</p>
-      <p>Replies</p>
-      <p>Views</p>
-      <p>Last Post</p>
-    </section>
+        <!-- Forum topics header -->
+        <section class="forum-header">
+            <p>Topic</p>
+            <p>Replies</p>
+            <p>Views</p>
+        </section>
 
-    <!-- Example forum threads -->
+        <!-- Example forum threads -->
 
-    <forum-list></forum-list>
+        <forum-list>
+            <li slot="thread" class="thread">
+                <div class="topic">
+                    <h3>What role is Zekken gonna play?</h3>
+                    <p class="meta">
+                        Posted by <strong>Diego</strong> - 2h ago
+                    </p>
+                </div>
+                <div class="replies">5</div>
+                <div class="views">120</div>
+            </li>
+
+            <li slot="thread" class="thread">
+                <div class="topic">
+                    <h3>ENVY is making it to kickoff playoffs</h3>
+                    <p class="meta">
+                        Posted by <strong>Alex</strong> - 1d ago
+                    </p>
+                </div>
+                <div class="views">321</div>
+                <div class="replies">45</div>
+            </li>
+        </forum-list>
+
 
   </body>
 </html>
