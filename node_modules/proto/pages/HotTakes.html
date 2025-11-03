@@ -1,11 +1,19 @@
 <!doctype html>
 <html>
     <head>
-        
         <link rel="stylesheet" href="../style/tokens.css">
         <link rel="stylesheet" href="../style/pages.css">
         <link rel="stylesheet" href="../style/HotTakes.css">
+        <script type="module">
+            import { define } from "@calpoly/mustang";
+            import { ForumListElement } from "/src/forumpost.js";
+
+             define({
+                "forum-list": ForumListElement
+            });
+        </script>
     </head>
+
     <body>
         <header>
             <h1> Forum</h1>
@@ -29,16 +37,24 @@
                 <use href="../assets/icons/sprites.svg#friends"></use>
             </svg>
         </nav>
-
-        <section class="set">
-            <p>Topic</p>
-            <p>Replies</p>
-            <p>Views</p>
-            <p>Last Post</p>
+    
+        <!-- Post form -->
+        <section class="post-form">
+            <textarea placeholder="What's on the Valorant mind..." rows="3"></textarea>
+            <button class="post-btn">Post</button>
         </section>
-        
-        <div> I'm thinking of treating this into a forum page where people can just post their
-            thoughts and people can respond. Textbox with the user's name and profile picture, etc.
-        </div>
-    </body>
+
+    <!-- Forum topics header -->
+    <section class="forum-header">
+      <p>Topic</p>
+      <p>Replies</p>
+      <p>Views</p>
+      <p>Last Post</p>
+    </section>
+
+    <!-- Example forum threads -->
+
+    <forum-list></forum-list>
+
+  </body>
 </html>
