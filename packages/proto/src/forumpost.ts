@@ -1,24 +1,32 @@
-// src/forumpost.ts
 import { html, css, LitElement } from "lit";
+import { customElement, property } from "lit/decorators.js";
 import reset from "./styles/reset.css.ts";
 
-export class ForumListElement extends LitElement {
-    override render() {
-        return html`
+@customElement("forum-post")
+export class ForumPostElement extends LitElement {
+  @property() user = "Anonymous";
+  @property() title = "Default Post Title";
+  @property({ type: Number }) replies = 0;
+  @property({ type: Number }) views = 0;
+
+  override render() {
+    return html`
         <section class="forum-list">
             <ul>
-                <slot name="thread">
-                    <li class="thread">
-                        <div class="topic">
-                            <h3>Default Post Title</h3>
+                <li class="thread">
+                    <div class="topic">
+                        <h3>${this.title}</h3>
                         <p class="meta">
-                            Posted by <strong>Anonymous</strong>
+                            Posted by <strong>${this.user}</strong>
                         </p>
-                        </div>
-                        <div class="replies">0</div>
-                        <div class="views">0</div>
-                    </li>
-                </slot>
+                    </div>
+                <div class="replies">
+                    ${this.replies}
+                </div>
+                <div class="views">
+                ${this.views}
+                </div>
+                </li>
             </ul>
         </section>
     `;
