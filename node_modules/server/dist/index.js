@@ -22,6 +22,8 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 var import_express = __toESM(require("express"));
+var import_mongo = require("./services/mongo");
+var import_forForum_svc = __toESM(require("./services/forForum-svc"));
 const app = (0, import_express.default)();
 const port = process.env.PORT || 3e3;
 const staticDir = process.env.STATIC || "public";
@@ -29,6 +31,23 @@ app.use(import_express.default.static(staticDir));
 app.get("/hello", (req, res) => {
   res.send("Hello, World");
 });
+app.get("/forums", (req, res) => {
+  import_forForum_svc.default.index().then((data) => {
+    res.set("Content-Type", "application/json").send(JSON.stringify(data));
+  }).catch((err) => {
+    console.error(err);
+    res.status(500).send("Server Error");
+  });
+});
+app.get("/forums/:title", (req, res) => {
+  const { title } = req.params;
+  import_forForum_svc.default.get(title).then((data) => {
+    if (data)
+      res.set("Content-Type", "application/json").send(JSON.stringify(data));
+    else res.status(404).send("Post not found");
+  });
+});
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
+(0, import_mongo.connect)("blazing");
