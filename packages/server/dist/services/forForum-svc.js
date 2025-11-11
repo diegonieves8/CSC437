@@ -27,8 +27,7 @@ const ForumSchema = new import_mongoose.Schema(
     title: { type: String, required: true, trim: true },
     user: { type: String, required: true, trim: true },
     replies: { type: Number, default: 0 },
-    views: { type: Number, default: 0 },
-    createdAt: { type: Date, default: Date.now }
+    views: { type: Number, default: 0 }
   },
   { collection: "forums" }
 );
@@ -37,8 +36,29 @@ function index() {
   return ForumModel.find();
 }
 function get(title) {
-  return ForumModel.find({ title }).then((list) => list[0]).catch((err) => {
-    throw new Error(`${title} Not Found`);
+  return ForumModel.findOne({ title }).then((post) => {
+    if (!post) throw new Error(`${title} Not Found`);
+    return post;
   });
 }
-var forForum_svc_default = { index, get };
+function getByUser(user) {
+  return ForumModel.find({ user }).then((posts) => posts).catch((err) => {
+    throw `No posts found for user ${user}: ${err}`;
+  });
+}
+function create(json) {
+  const post = new ForumModel(json);
+  return post.save();
+}
+function update(title, updatedForum) {
+  return ForumModel.findOneAndUpdate({ title }, updatedForum, { new: true }).then((updated) => {
+    if (!updated) throw `${title} not updated`;
+    else return updated;
+  });
+}
+function remove(title) {
+  return ForumModel.findOneAndDelete({ title }).then((deleted) => {
+    if (!deleted) throw `${title} not deleted`;
+  });
+}
+var forForum_svc_default = { index, get, getByUser, create, update, remove };

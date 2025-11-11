@@ -3,5 +3,4 @@ export interface ForumPost {
   title: string;
   replies: number;
   views: number;
-  createdAt?: Date;
 }
