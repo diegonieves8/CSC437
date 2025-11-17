@@ -10,6 +10,7 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         sub: resolve(__dirname, './pages/HotTakes.html'),
+        login: resolve(__dirname, 'login.html')
       },
     },
   },

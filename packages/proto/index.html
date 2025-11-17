@@ -14,6 +14,12 @@
                 "mu-auth": Auth.Provider
             });
 
+            document.addEventListener("DOMContentLoaded", () => {
+                const btn = document.querySelector("#auth-btn");
+                btn.addEventListener("click", () => {
+                    window.location.href = "login.html";
+                });
+            });
         </script>
     </head>
 
