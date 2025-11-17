@@ -7,10 +7,19 @@
         <link rel="stylesheet" href="./style/pages.css">
         <link rel="stylesheet" href="./style/index.css">
         <script type="module" src="./components/darkmode.js"></script>
+        <script type="module">
+            import { define, Auth } from "@calpoly/mustang";
+
+            define({
+                "mu-auth": Auth.Provider
+            });
+
+        </script>
     </head>
 
     <body>
-        <header>
+        <mu-auth provides="blazing:auth">
+          <header>
             <a href = "index.html"><h1> VCT Rank</h1></a>
             <!-- Planning to put the navs in header that will just have icons and 
                 will expand to show the text for what they will lead you to
@@ -19,7 +28,9 @@
                 <input type="checkbox" autocomplete="off" />
                     Light mode
             </label>
-        </header>
+            <button id="auth-btn">Sign In</button>
+          </header>
+        </mu-auth>
 
 
 
@@ -55,7 +66,28 @@
                 <p>FNC comes back in last map to take the win against the heavy favorites PRX.</p>
             </div>
         </section>
-    
+
+        <script type="module">
+            import { define, Auth, Events } from "@calpoly/mustang";
+
+            define({ "mu-auth": Auth.Provider });
+
+            const authBtn = document.getElementById("auth-btn");
+            const authObserver = new Auth.Observer(document.querySelector("mu-auth"), "blazing:auth");
+
+            authObserver.observe(auth => {
+                if (auth.user && auth.user.authenticated) {
+                // User is logged in
+                    authBtn.textContent = "Sign Out";
+                    authBtn.onclick = () => Events.relay(new Event("click"), "auth:message", ["auth/signout"]);
+                } else {
+                // User is not logged in
+                    authBtn.textContent = "Sign In";
+                    authBtn.onclick = () => window.location.href = "/login.html";
+            }
+            });
+    </script>
+
     </body>
 </html>
 
