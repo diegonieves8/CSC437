@@ -27,39 +27,46 @@
         <mu-auth provides="blazing:auth">
           <header>
             <a href = "index.html"><h1> VCT Rank</h1></a>
-            <!-- Planning to put the navs in header that will just have icons and 
-                will expand to show the text for what they will lead you to
-             -->
-            <label>
-                <input type="checkbox" autocomplete="off" />
+            
+            <nav class="nav-bar">
+                <a href="Profile.html">
+                    <svg class="icon">
+                        <use href="../assets/icons/sprites.svg#account"></use>       
+                    </svg>
+                    <span>Profile</span>
+                </a>
+     
+                <a href="Rankings.html">
+                    <svg class="icon">
+                        <use href="../assets/icons/sprites.svg#rankings"></use>
+                    </svg>
+                    <span>Rankings</span>
+                </a>
+
+                <a href="HotTakes.html">
+                    <svg class="icon">
+                        <use href="../assets/icons/sprites.svg#forum"></use>
+                    </svg>
+                    <span>Forum</span>
+                </a>
+
+                <a href="Friends.html">
+                    <svg class="icon">
+                        <use href="../assets/icons/sprites.svg#friends"></use>
+                    </svg>
+                    <span>Friend List</span>
+                </a>
+            </nav>
+
+            <div class="header-controls">
+                <label>
+                    <input type="checkbox" autocomplete="off" />
                     Light mode
-            </label>
-            <button id="auth-btn">Sign In</button>
+                </label>
+                <button id="auth-btn">Sign In</button>
+            </div>
           </header>
         </mu-auth>
-
-
-
-        <nav class = "nav-bar">
-            <svg class="icon">
-                <use href="../assets/icons/sprites.svg#account"></use>
-            </svg>
- 
-            <a href="./pages/Rankings.html">Make your own rankings</a>
-            <svg class="icon">
-                <use href="../assets/icons/sprites.svg#rankings"></use>
-            </svg>
-
-            <a href="./pages/HotTakes.html">Forum</a>
-            <svg class="icon">
-                <use href="../assets/icons/sprites.svg#forum"></use>
-            </svg>
-
-            <a href="./pages/Friends.html"> Friend List</a>
-            <svg class="icon">
-                <use href="../assets/icons/sprites.svg#friends"></use>
-            </svg>
-        </nav>
 
         <section class="card-grid">
             <div class="card">
@@ -92,10 +99,7 @@
                     authBtn.onclick = () => window.location.href = "/login.html";
             }
             });
-    </script>
+        </script>
 
     </body>
 </html>
-
-
-

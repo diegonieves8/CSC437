@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../style/reset.css">
+        <link rel="stylesheet" href="../style/tokens.css">
+        <link rel="stylesheet" href="../style/pages.css">
+        <link rel="stylesheet" href="../style/HotTakes.css">
+        <script type="module" src="../components/darkmode.js"></script>
+    </head>
+
+    <body>
+        <header>
+            <a href="../index.html"><h1>VCT Rank</h1></a>
+            
+            <nav class="nav-bar">
+                <a href="Profile.html">
+                    <svg class="icon">
+                        <use href="../assets/icons/sprites.svg#account"></use>       
+                    </svg>
+                    <span>Profile</span>
+                </a>
+     
+                <a href="Rankings.html">
+                    <svg class="icon">
+                        <use href="../assets/icons/sprites.svg#rankings"></use>
+                    </svg>
+                    <span>Rankings</span>
+                </a>
+
+                <a href="HotTakes.html">
+                    <svg class="icon">
+                        <use href="../assets/icons/sprites.svg#forum"></use>
+                    </svg>
+                    <span>Forum</span>
+                </a>
+
+                <a href="Friends.html">
+                    <svg class="icon">
+                        <use href="../assets/icons/sprites.svg#friends"></use>
+                    </svg>
+                    <span>Friend List</span>
+                </a>
+            </nav>
+
+            <div class="header-controls">
+                <label>
+                    <input type="checkbox" autocomplete="off" />
+                    Light mode
+                </label>
+            </div>
+        </header>
+
+        <div class="forum-container">
+            <div class="forum-title">
+                <h2>Valorant Discussion Forum</h2>
+                <p>Share your thoughts, predictions, and hot takes</p>
+            </div>
+
+            <!-- Post form -->
+            <section class="post-form">
+                <textarea placeholder="What's on your Valorant mind..." rows="4"></textarea>
+                <button class="post-btn">Post Topic</button>
+            </section>
+
+            <!-- Forum topics header -->
+            <section class="forum-header">
+                <p>Topic</p>
+                <p>Replies</p>
+                <p>Views</p>
+            </section>
+
+            <forum-itinerary src="../data/forum-itinerary.json"></forum-itinerary>
+        </div>
+
+        <script type="module" src="../src/forum-itinerary.ts"></script>
+    </body>
+</html>
