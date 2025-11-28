@@ -1,31 +1,148 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <script type="module" crossorigin src="/assets/login-DKg5dRv6.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
-  <link rel="modulepreload" crossorigin href="/assets/mustang-CkVv6GFe.js">
-  <link rel="modulepreload" crossorigin href="/assets/reset.css-CTn5KZt9.js">
-</head>
-<body class="page">
-  <mu-auth>
-    <h2>User Login</h2>
-      <main class="card">
-        <login-form api="/auth/login">
-          <label>
-            <span>Username:</span>
-            <input name="username" autocomplete="off" />
-          </label>
-          <label>
-            <span>Password:</span>
-            <input type="password" name="password" />
-          </label>
-        </login-form>
-      </main>
-      <p
-        >Or did you want to
-            <a href="newuser.html">Sign up as a new user</a>?
-      </p>
-    </mu-auth>
-  </body>
+    <head>
+        <meta charset="utf-8">
+      <script type="module" crossorigin src="/assets/login-CwsmYX1S.js"></script>
+      <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
+      <link rel="modulepreload" crossorigin href="/assets/darkmode-BrfonZbD.js">
+      <link rel="stylesheet" crossorigin href="/assets/pages-C3xHHh8r.css">
+    </head>
+
+    <body>
+        <header>
+            <a href="index.html"><h1>VCT Rank</h1></a>
+            <div class="header-controls">
+                <label>
+                    <input type="checkbox" autocomplete="off" />
+                    Light mode
+                </label>
+            </div>
+        </header>
+
+        <div class="login-container">
+            <div class="login-box">
+                <h2>Sign In</h2>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+
+                    <div id="error-message" class="error-message"></div>
+
+                    <button type="submit" class="login-btn">Log In</button>
+                </form>
+
+                <p class="register-link">
+                    Don't have an account? <a href="./register.html">Register here</a>
+                </p>
+            </div>
+        </div>
+
+
+        <style>
+            .login-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: calc(100vh - 100px);
+                padding: 2rem;
+            }
+
+            .login-box {
+                background: var(--color-bg-header);
+                border: 2px solid var(--color-accent-primary);
+                border-radius: 12px;
+                padding: 2.5rem;
+                max-width: 400px;
+                width: 100%;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            }
+
+            .login-box h2 {
+                margin: 0 0 1.5rem 0;
+                color: var(--color-text-header);
+                text-align: center;
+                font-size: 2rem;
+            }
+
+            .form-group {
+                margin-bottom: 1.5rem;
+            }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 0.5rem;
+                color: var(--color-text-default);
+                font-weight: 600;
+            }
+
+            .form-group input {
+                width: 100%;
+                padding: 0.75rem;
+                border: 1px solid var(--color-border);
+                border-radius: 6px;
+                background: var(--color-bg-page);
+                color: var(--color-text-default);
+                font-size: 14px;
+                transition: border-color 0.2s;
+            }
+
+            .form-group input:focus {
+                outline: none;
+                border-color: var(--color-accent-primary);
+            }
+
+            .error-message {
+                display: none;
+                color: var(--color-accent-primary);
+                background: rgba(255, 70, 85, 0.1);
+                padding: 0.75rem;
+                border-radius: 6px;
+                margin-bottom: 1rem;
+                text-align: center;
+                font-size: 14px;
+            }
+
+            .login-btn {
+                width: 100%;
+                padding: 0.75rem;
+                background: var(--color-accent-primary);
+                color: white;
+                border: none;
+                border-radius: 6px;
+                font-size: 16px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.2s;
+            }
+
+            .login-btn:hover {
+                background: var(--color-accent-hover);
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(255, 70, 85, 0.4);
+            }
+
+            .register-link {
+                text-align: center;
+                margin-top: 1.5rem;
+                color: var(--color-text-default);
+            }
+
+            .register-link a {
+                color: var(--color-accent-primary);
+                text-decoration: none;
+                font-weight: 600;
+            }
+
+            .register-link a:hover {
+                color: var(--color-accent-hover);
+            }
+        </style>
+    </body>
 </html>

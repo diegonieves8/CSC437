@@ -1,66 +1,70 @@
 <!doctype html>
 <html lang = "en">
     <head>
-        <meta charset="utf-8">
-      <script type="module" crossorigin src="/assets/main-CGT2DDY0.js"></script>
+        <meta charset="utf-8">
+      <script type="module" crossorigin src="/assets/main-DyB33yOe.js"></script>
       <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
-      <link rel="modulepreload" crossorigin href="/assets/mustang-CkVv6GFe.js">
-      <link rel="stylesheet" crossorigin href="/assets/main-DSv_ZVFv.css">
-      <link rel="stylesheet" crossorigin href="/assets/pages-CFMTVUtr.css">
+      <link rel="modulepreload" crossorigin href="/assets/darkmode-BrfonZbD.js">
+      <link rel="modulepreload" crossorigin href="/assets/auth-check-B-Eq97Em.js">
+      <link rel="stylesheet" crossorigin href="/assets/main-B56VeXaK.css">
+      <link rel="stylesheet" crossorigin href="/assets/pages-C3xHHh8r.css">
+      <link rel="stylesheet" crossorigin href="/assets/authmodal-D4BBtOxm.css">
     </head>
 
     <body>
-        <mu-auth provides="blazing:auth">
-          <header>
+        <header>
             <a href = "index.html"><h1> VCT Rank</h1></a>
-            <!-- Planning to put the navs in header that will just have icons and 
-                will expand to show the text for what they will lead you to
-             -->
-            <label>
-                <input type="checkbox" autocomplete="off" />
+            
+            <nav class="nav-bar">
+                <a href="#" id="profile-link">
+                    <svg class="icon">
+                        <use href="/assets/sprites-YLQbnhnJ.svg#account"></use>       
+                    </svg>
+                    <span>Profile</span>
+                </a>
+     
+                <a href="Rankings.html">
+                    <svg class="icon">
+                        <use href="/assets/sprites-YLQbnhnJ.svg#rankings"></use>
+                    </svg>
+                    <span>Rankings</span>
+                </a>
+
+                <a href="HotTakes.html">
+                    <svg class="icon">
+                        <use href="/assets/sprites-YLQbnhnJ.svg#forum"></use>
+                    </svg>
+                    <span>Forum</span>
+                </a>
+
+                <a href="Friends.html">
+                    <svg class="icon">
+                        <use href="/assets/sprites-YLQbnhnJ.svg#friends"></use>
+                    </svg>
+                    <span>Friend List</span>
+                </a>
+            </nav>
+
+            <div class="header-controls">
+                <label>
+                    <input type="checkbox" autocomplete="off" />
                     Light mode
-            </label>
-            <button id="auth-btn">Sign In</button>
-          </header>
-        </mu-auth>
-
-
-
-        <nav class = "nav-bar">
-            <svg class="icon">
-                <use href="../assets/icons/sprites.svg#account"></use>
-            </svg>
- 
-            <a href="./pages/Rankings.html">Make your own rankings</a>
-            <svg class="icon">
-                <use href="../assets/icons/sprites.svg#rankings"></use>
-            </svg>
-
-            <a href="./pages/HotTakes.html">Forum</a>
-            <svg class="icon">
-                <use href="../assets/icons/sprites.svg#forum"></use>
-            </svg>
-
-            <a href="./pages/Friends.html"> Friend List</a>
-            <svg class="icon">
-                <use href="../assets/icons/sprites.svg#friends"></use>
-            </svg>
-        </nav>
+                </label>
+            </div>
+        </header>
 
         <section class="card-grid">
             <div class="card">
-                <img src="../assets/NRG.jpg" alt="Team NRG"/>
+                <img src="/assets/NRG-CBj5k8ih.jpg" alt="Team NRG"/>
                 <p>NRG takes down MIBR in a close 2-1 victory. Aspas pops off</p>
             </div>
 
             <div class="card">
-                <img src="../assets/FNC.jpg" alt="Team FNC"/>
+                <img src="/assets/FNC-CWPy8hUM.jpg" alt="Team FNC"/>
                 <p>FNC comes back in last map to take the win against the heavy favorites PRX.</p>
             </div>
         </section>
+
 
     </body>
 </html>
-
-
-

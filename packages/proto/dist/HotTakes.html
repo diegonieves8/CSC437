@@ -1,45 +1,45 @@
 <!doctype html>
-<html lang = "en">
+<html lang="en">
     <head>
         <meta charset="utf-8">
-      <script type="module" crossorigin src="/assets/main-DyB33yOe.js"></script>
+      <script type="module" crossorigin src="/assets/hotTakes-DvRDgIBp.js"></script>
       <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
       <link rel="modulepreload" crossorigin href="/assets/darkmode-BrfonZbD.js">
       <link rel="modulepreload" crossorigin href="/assets/auth-check-B-Eq97Em.js">
-      <link rel="stylesheet" crossorigin href="/assets/main-B56VeXaK.css">
+      <link rel="stylesheet" crossorigin href="/assets/hotTakes-N4lPethj.css">
       <link rel="stylesheet" crossorigin href="/assets/pages-C3xHHh8r.css">
       <link rel="stylesheet" crossorigin href="/assets/authmodal-D4BBtOxm.css">
     </head>
 
     <body>
         <header>
-            <a href = "index.html"><h1> VCT Rank</h1></a>
+            <a href="../index.html"><h1>VCT Rank</h1></a>
             
             <nav class="nav-bar">
                 <a href="#" id="profile-link">
                     <svg class="icon">
-                        <use href="/assets/sprites-YLQbnhnJ.svg#account"></use>       
+                        <use href="../assets/icons/sprites.svg#account"></use>       
                     </svg>
                     <span>Profile</span>
                 </a>
      
                 <a href="Rankings.html">
                     <svg class="icon">
-                        <use href="/assets/sprites-YLQbnhnJ.svg#rankings"></use>
+                        <use href="../assets/icons/sprites.svg#rankings"></use>
                     </svg>
                     <span>Rankings</span>
                 </a>
 
                 <a href="HotTakes.html">
                     <svg class="icon">
-                        <use href="/assets/sprites-YLQbnhnJ.svg#forum"></use>
+                        <use href="../assets/icons/sprites.svg#forum"></use>
                     </svg>
                     <span>Forum</span>
                 </a>
 
                 <a href="Friends.html">
                     <svg class="icon">
-                        <use href="/assets/sprites-YLQbnhnJ.svg#friends"></use>
+                        <use href="../assets/icons/sprites.svg#friends"></use>
                     </svg>
                     <span>Friend List</span>
                 </a>
@@ -53,18 +53,28 @@
             </div>
         </header>
 
-        <section class="card-grid">
-            <div class="card">
-                <img src="/assets/NRG-CBj5k8ih.jpg" alt="Team NRG"/>
-                <p>NRG takes down MIBR in a close 2-1 victory. Aspas pops off</p>
+        <div class="forum-container">
+            <div class="forum-title">
+                <h2>Valorant Discussion Forum</h2>
+                <p>Share your thoughts, predictions, and hot takes</p>
             </div>
 
-            <div class="card">
-                <img src="/assets/FNC-CWPy8hUM.jpg" alt="Team FNC"/>
-                <p>FNC comes back in last map to take the win against the heavy favorites PRX.</p>
-            </div>
-        </section>
+            <!-- Post form -->
+            <section class="post-form">
+                <textarea placeholder="What's on your Valorant mind..." rows="4"></textarea>
+                <button class="post-btn">Post Topic</button>
+            </section>
+
+            <!-- Forum topics header -->
+            <section class="forum-header">
+                <p>Topic</p>
+                <p>Replies</p>
+                <p>Views</p>
+            </section>
+
+            <forum-itinerary src="../public/data/forum-itinerary.json"></forum-itinerary>
+        </div>
 
-
+
     </body>
 </html>

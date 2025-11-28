@@ -6,53 +6,40 @@
         <link rel="stylesheet" href="./style/tokens.css">
         <link rel="stylesheet" href="./style/pages.css">
         <link rel="stylesheet" href="./style/index.css">
+        <link rel="stylesheet" href="./style/authmodal.css">
         <script type="module" src="./components/darkmode.js"></script>
-        <script type="module">
-            import { define, Auth } from "@calpoly/mustang";
-
-            define({
-                "mu-auth": Auth.Provider
-            });
-
-            document.addEventListener("DOMContentLoaded", () => {
-                const btn = document.querySelector("#auth-btn");
-                btn.addEventListener("click", () => {
-                    window.location.href = "login.html";
-                });
-            });
-        </script>
+        <script type="module" src="./components/auth-check.js"></script>
     </head>
 
     <body>
-        <mu-auth provides="blazing:auth">
-          <header>
+        <header>
             <a href = "index.html"><h1> VCT Rank</h1></a>
             
             <nav class="nav-bar">
-                <a href="Profile.html">
+                <a href="#" id="profile-link">
                     <svg class="icon">
-                        <use href="../assets/icons/sprites.svg#account"></use>       
+                        <use href="./assets/icons/sprites.svg#account"></use>       
                     </svg>
                     <span>Profile</span>
                 </a>
      
                 <a href="Rankings.html">
                     <svg class="icon">
-                        <use href="../assets/icons/sprites.svg#rankings"></use>
+                        <use href="./assets/icons/sprites.svg#rankings"></use>
                     </svg>
                     <span>Rankings</span>
                 </a>
 
                 <a href="HotTakes.html">
                     <svg class="icon">
-                        <use href="../assets/icons/sprites.svg#forum"></use>
+                        <use href="./assets/icons/sprites.svg#forum"></use>
                     </svg>
                     <span>Forum</span>
                 </a>
 
                 <a href="Friends.html">
                     <svg class="icon">
-                        <use href="../assets/icons/sprites.svg#friends"></use>
+                        <use href="./assets/icons/sprites.svg#friends"></use>
                     </svg>
                     <span>Friend List</span>
                 </a>
@@ -63,41 +50,56 @@
                     <input type="checkbox" autocomplete="off" />
                     Light mode
                 </label>
-                <button id="auth-btn">Sign In</button>
             </div>
-          </header>
-        </mu-auth>
+        </header>
 
         <section class="card-grid">
             <div class="card">
-                <img src="../assets/NRG.jpg" alt="Team NRG"/>
+                <img src="./assets/NRG.jpg" alt="Team NRG"/>
                 <p>NRG takes down MIBR in a close 2-1 victory. Aspas pops off</p>
             </div>
 
             <div class="card">
-                <img src="../assets/FNC.jpg" alt="Team FNC"/>
+                <img src="./assets/FNC.jpg" alt="Team FNC"/>
                 <p>FNC comes back in last map to take the win against the heavy favorites PRX.</p>
             </div>
         </section>
 
         <script type="module">
-            import { define, Auth, Events } from "@calpoly/mustang";
+            // Handle profile link click with auth check
+            document.getElementById('profile-link').addEventListener('click', (e) => {
+                e.preventDefault();
+                window.checkAuthAndRedirect('./Profile.html');
+            });
 
-            define({ "mu-auth": Auth.Provider });
-
-            const authBtn = document.getElementById("auth-btn");
-            const authObserver = new Auth.Observer(document.querySelector("mu-auth"), "blazing:auth");
-
-            authObserver.observe(auth => {
-                if (auth.user && auth.user.authenticated) {
-                // User is logged in
-                    authBtn.textContent = "Sign Out";
-                    authBtn.onclick = () => Events.relay(new Event("click"), "auth:message", ["auth/signout"]);
+            // Update Sign In/Sign Out button based on auth status
+            const authBtn = document.getElementById('auth-action-btn');
+            
+            function updateAuthButton() {
+                if (window.isAuthenticated()) {
+                    const username = window.getUsername();
+                    authBtn.textContent = username ? `${username}` : 'Sign Out';
+                    authBtn.onclick = () => {
+                        // Sign out: remove token and reload
+                        localStorage.removeItem('token');
+                        window.location.reload();
+                    };
                 } else {
-                // User is not logged in
-                    authBtn.textContent = "Sign In";
-                    authBtn.onclick = () => window.location.href = "/login.html";
+                    authBtn.textContent = 'Sign In';
+                    authBtn.onclick = () => {
+                        window.location.href = './login.html';
+                    };
+                }
             }
+
+            // Update button on page load
+            updateAuthButton();
+
+            // Update button when storage changes (e.g., after login in another tab)
+            window.addEventListener('storage', (e) => {
+                if (e.key === 'token') {
+                    updateAuthButton();
+                }
             });
         </script>
 

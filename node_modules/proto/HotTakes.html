@@ -2,11 +2,13 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="../style/reset.css">
-        <link rel="stylesheet" href="../style/tokens.css">
-        <link rel="stylesheet" href="../style/pages.css">
-        <link rel="stylesheet" href="../style/HotTakes.css">
-        <script type="module" src="../components/darkmode.js"></script>
+        <link rel="stylesheet" href="./style/reset.css">
+        <link rel="stylesheet" href="./style/tokens.css">
+        <link rel="stylesheet" href="./style/pages.css">
+        <link rel="stylesheet" href="./style/HotTakes.css">
+        <script type="module" src="./components/darkmode.js"></script>
+        <link rel="stylesheet" href="./style/authmodal.css">
+        <script type="module" src="./components/auth-check.js"></script>
     </head>
 
     <body>
@@ -14,30 +16,30 @@
             <a href="../index.html"><h1>VCT Rank</h1></a>
             
             <nav class="nav-bar">
-                <a href="Profile.html">
+                <a href="#" id="profile-link">
                     <svg class="icon">
-                        <use href="../assets/icons/sprites.svg#account"></use>       
+                        <use href="./assets/icons/sprites.svg#account"></use>       
                     </svg>
                     <span>Profile</span>
                 </a>
      
                 <a href="Rankings.html">
                     <svg class="icon">
-                        <use href="../assets/icons/sprites.svg#rankings"></use>
+                        <use href="./assets/icons/sprites.svg#rankings"></use>
                     </svg>
                     <span>Rankings</span>
                 </a>
 
                 <a href="HotTakes.html">
                     <svg class="icon">
-                        <use href="../assets/icons/sprites.svg#forum"></use>
+                        <use href="./assets/icons/sprites.svg#forum"></use>
                     </svg>
                     <span>Forum</span>
                 </a>
 
                 <a href="Friends.html">
                     <svg class="icon">
-                        <use href="../assets/icons/sprites.svg#friends"></use>
+                        <use href="./assets/icons/sprites.svg#friends"></use>
                     </svg>
                     <span>Friend List</span>
                 </a>
@@ -70,9 +72,40 @@
                 <p>Views</p>
             </section>
 
-            <forum-itinerary src="../data/forum-itinerary.json"></forum-itinerary>
+            <forum-itinerary src="../public/data/forum-itinerary.json"></forum-itinerary>
         </div>
 
-        <script type="module" src="../src/forum-itinerary.ts"></script>
+        <script type="module" src="./src/forum-itinerary.ts"></script>
+
+        <script type="module">
+            // Handle profile link click with auth check
+            document.getElementById('profile-link').addEventListener('click', (e) => {
+                e.preventDefault();
+                window.checkAuthAndRedirect('./Profile.html');
+            });
+
+            // Update Sign In/Sign Out button based on auth status
+            const authBtn = document.getElementById('auth-action-btn');
+    
+            if (authBtn) {
+                function updateAuthButton() {
+                    if (window.isAuthenticated()) {
+                        const username = window.getUsername();
+                        authBtn.textContent = username ? `${username}` : 'Sign Out';
+                        authBtn.onclick = () => {
+                            localStorage.removeItem('token');
+                            window.location.reload();
+                        };
+                    } else {
+                        authBtn.textContent = 'Sign In';
+                        authBtn.onclick = () => {
+                            window.location.href = './login.html';
+                        };
+                    }
+                }
+        
+            updateAuthButton();
+        }
+        </script>
     </body>
 </html>

@@ -9,8 +9,10 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
-        sub: resolve(__dirname, './pages/HotTakes.html'),
-        login: resolve(__dirname, 'login.html')
+        login: resolve(__dirname, 'login.html'),
+        hotTakes: resolve(__dirname, 'HotTakes.html'),
+        rankings: resolve(__dirname, 'Rankings.html'),
+        friends: resolve(__dirname, 'Friends.html'),
       },
     },
   },
