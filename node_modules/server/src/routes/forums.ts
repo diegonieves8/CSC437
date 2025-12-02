@@ -12,6 +12,15 @@ router.get("/", (_, res: Response) => {
     .catch((err) => res.status(500).send(err));
 });
 
+//by user
+router.get("/user/:user", (req: Request, res: Response) => {
+  const { user } = req.params;
+
+  Forums.getByUser(user)
+    .then((posts: ForumPost[]) => res.json(posts))
+    .catch((err) => res.status(404).send(err));
+});
+
 // GET one forum post by title
 router.get("/:title", (req: Request, res: Response) => {
   const { title } = req.params;
@@ -21,14 +30,6 @@ router.get("/:title", (req: Request, res: Response) => {
     .catch((err) => res.status(404).send(err));
 });
 
-//by user
-router.get("/user/:user", (req: Request, res: Response) => {
-  const { user } = req.params;
-
-  Forums.getByUser(user)
-    .then((posts: ForumPost[]) => res.json(posts))
-    .catch((err) => res.status(404).send(err));
-});
 
 router.post("/", (req: Request, res: Response) => {
   const newPost = req.body;

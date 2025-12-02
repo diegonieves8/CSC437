@@ -37,13 +37,13 @@ const router = import_express.default.Router();
 router.get("/", (_, res) => {
   import_forForum_svc.default.index().then((list) => res.json(list)).catch((err) => res.status(500).send(err));
 });
-router.get("/:title", (req, res) => {
-  const { title } = req.params;
-  import_forForum_svc.default.get(title).then((post) => res.json(post)).catch((err) => res.status(404).send(err));
-});
 router.get("/user/:user", (req, res) => {
   const { user } = req.params;
   import_forForum_svc.default.getByUser(user).then((posts) => res.json(posts)).catch((err) => res.status(404).send(err));
+});
+router.get("/:title", (req, res) => {
+  const { title } = req.params;
+  import_forForum_svc.default.get(title).then((post) => res.json(post)).catch((err) => res.status(404).send(err));
 });
 router.post("/", (req, res) => {
   const newPost = req.body;

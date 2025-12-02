@@ -25,6 +25,8 @@ var import_express = __toESM(require("express"));
 var import_mongo = require("./services/mongo");
 var import_forums = __toESM(require("./routes/forums"));
 var import_auth = __toESM(require("./routes/auth"));
+var import_promises = __toESM(require("node:fs/promises"));
+var import_path = __toESM(require("path"));
 const app = (0, import_express.default)();
 const port = Number(process.env.PORT) || 3e3;
 const staticDir = process.env.STATIC || "public";
@@ -32,8 +34,9 @@ app.use(import_express.default.static(staticDir));
 app.use(import_express.default.json());
 app.use("/auth", import_auth.default);
 app.use("/api/forums", import_auth.authenticateUser, import_forums.default);
-app.get("/hello", (req, res) => {
-  res.send("Hello, World");
+app.use("/app", (req, res) => {
+  const indexHtml = import_path.default.resolve(staticDir, "index.html");
+  import_promises.default.readFile(indexHtml, { encoding: "utf8" }).then((html) => res.send(html));
 });
 app.listen(port, "0.0.0.0", () => {
   console.log(`Server running on port ${port}`);
