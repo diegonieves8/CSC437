@@ -1,9 +1,10 @@
-import { Auth, define, History, Switch, Store } from "@calpoly/mustang";
+import { Auth, define, History, Switch, Store, } from "@calpoly/mustang";
 import { html } from "lit";
 import "./components/vct-header";
 import { Model, init } from "./model";
 import update from "./update";
 import { Msg } from "./messages";
+import "./components/forum-list";
 
 // import views so customElements are registered
 import "./views/HotTakes";
@@ -38,5 +39,5 @@ define({
     constructor() {
       super(update, init, "vct:auth");
     }
-  }
+  },
 });

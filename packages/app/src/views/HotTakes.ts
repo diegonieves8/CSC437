@@ -1,8 +1,24 @@
 // packages/app/src/views/HotTakes.ts
+import { View } from "@calpoly/mustang";
+import { html, css } from "lit";
+import { Model } from "../model";
+import { Msg } from "../messages";
 
-import { LitElement, html, css } from "lit";
+export class HotTakesView extends View<Model, Msg> {
 
-export class HotTakesView extends LitElement {
+  constructor() {
+    super("vct:model");
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.dispatchMessage(["forum/request", {}]);
+  }
+
+  get takes() {
+    return this.model.hottakes ?? [];
+  }
+
   static styles = css`
     @import "/style/reset.css";
     @import "/style/tokens.css";
@@ -10,41 +26,29 @@ export class HotTakesView extends LitElement {
     @import "/style/HotTakes.css";
     @import "/style/authmodal.css";
 
-    :host {
-      display: block;
-    }
+    :host { display: block; }
   `;
 
-  // You will later convert forum-itinerary to a component,
-  // but for now we leave the tag exactly as-is so it still works.
   render() {
     return html`
-
-      
       <div class="forum-container">
         <div class="forum-title">
           <h2>Valorant Discussion Forum</h2>
           <p>Share your thoughts, predictions, and hot takes</p>
         </div>
 
-        
         <section class="post-form">
-          <textarea
-            placeholder="What's on your Valorant mind..."
-            rows="4">
-          </textarea>
+          <textarea placeholder="What's on your Valorant mind..." rows="4"></textarea>
           <button class="post-btn">Post Topic</button>
         </section>
 
-       
         <section class="forum-header">
           <p>Topic</p>
           <p>Replies</p>
           <p>Views</p>
         </section>
 
-        
-        <forum-itinerary src="/data/forum-itinerary.json"></forum-itinerary>
+        <forum-list .items=${this.takes}></forum-list>
       </div>
     `;
   }

@@ -1,21 +1,20 @@
+// packages/app/src/update.ts
+
 import { Auth, ThenUpdate } from "@calpoly/mustang";
 import { Msg } from "./messages";
-import { Model,Forum } from "./model";
+import { Model, Forum } from "./model";
 
 export default function update(
   message: Msg,
   model: Model,
   user: Auth.User
 ): Model | ThenUpdate<Model, Msg> {
+
   switch (message[0]) {
     case "forum/request": {
-      // Ask the store to run requestForum(), then dispatch "forum/load"
       return [
         model,
-        requestForum(user).then((takes: Forum[]) => [
-          "forum/load",
-          { takes }
-        ])
+        requestForum(user).then((takes) => ["forum/load", { takes }])
       ];
     }
 
@@ -25,14 +24,14 @@ export default function update(
     }
 
     default:
-      throw new Error(`Unhandled message: ${message[0]}`);
+      return model; // <-- Must return something instead of throwing error
   }
 }
 
-/** Fetches your JSON forum data */
+/** Fetch your JSON forum data */
 function requestForum(user: Auth.User): Promise<Forum[]> {
   return fetch("/data/forum-itinerary.json", {
-    headers: Auth.headers(user)
+    headers: Auth.headers(user) // Works even if user is null (public fetch)
   })
     .then((res) => {
       if (!res.ok) throw new Error("Failed to fetch forum data");
