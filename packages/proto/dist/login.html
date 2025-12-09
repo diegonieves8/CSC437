@@ -2,11 +2,10 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-      <script type="module" crossorigin src="/assets/login-CMuXnWAy.js"></script>
-      <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
-      <link rel="modulepreload" crossorigin href="/assets/darkmode-BrfonZbD.js">
-      <link rel="stylesheet" crossorigin href="/assets/login-Bdzt2nUf.css">
-      <link rel="stylesheet" crossorigin href="/assets/pages-C3xHHh8r.css">
+      <script type="module" crossorigin src="/assets/login-DHgWTUrq.js"></script>
+      <link rel="modulepreload" crossorigin href="/assets/darkmode-CXfVOGe4.js">
+      <link rel="stylesheet" crossorigin href="/assets/darkmode-C3xHHh8r.css">
+      <link rel="stylesheet" crossorigin href="/assets/login-mGCPlyv-.css">
     </head>
 
     <body>
@@ -20,31 +19,43 @@
             </div>
         </header>
 
-        <div class="login-container">
-            <div class="login-box">
+        <div class="auth-container">
+            <div class="auth-box">
                 <h2>Sign In</h2>
+                
                 <form id="login-form">
                     <div class="form-group">
                         <label for="username">Username</label>
-                        <input type="text" id="username" name="username" required>
+                        <input 
+                            type="text" 
+                            id="username" 
+                            name="username" 
+                            required
+                            placeholder="Enter your username"
+                        >
                     </div>
                     
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" id="password" name="password" required>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            required
+                            placeholder="Enter your password"
+                        >
                     </div>
 
                     <div id="error-message" class="error-message"></div>
 
-                    <button type="submit" class="login-btn">Log In</button>
+                    <button type="submit" class="auth-btn">Log In</button>
                 </form>
 
-                <p class="register-link">
+                <p class="auth-link">
                     Don't have an account? <a href="./register.html">Register here</a>
                 </p>
             </div>
         </div>
 
-
     </body>
 </html>

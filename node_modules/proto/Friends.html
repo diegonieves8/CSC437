@@ -1,46 +1,64 @@
-<!doctype html>
-<html>
-    <head>
+<head>
+        <meta charset="utf-8">
         <link rel="stylesheet" href="./style/reset.css">
         <link rel="stylesheet" href="./style/tokens.css">
         <link rel="stylesheet" href="./style/pages.css">
         <link rel="stylesheet" href="./style/Friends.css">
+        <link rel="stylesheet" href="./style/authmodal.css">
+        <script type="module" src="./components/darkmode.js"></script>
+        <script type="module" src="./components/auth-check.js"></script>
     </head>
     <body>
         <header>
-            <a href = "index.html"><h1> VCT Rank</h1></a>
-            <!-- Planning to put the navs in header that will just have icons and 
-                will expand to show the text for what they will lead you to
-             -->
+            <a href="index.html"><h1>VCT Rank</h1></a>
+            
+            <nav class="nav-bar">
+                <a href="#" id="profile-link">
+                    <svg class="icon">
+                        <use href="./assets/icons/sprites.svg#account"></use>       
+                    </svg>
+                    <span>Profile</span>
+                </a>
+     
+                <a href="./Rankings.html">
+                    <svg class="icon">
+                        <use href="./assets/icons/sprites.svg#rankings"></use>
+                    </svg>
+                    <span>Rankings</span>
+                </a>
+
+                <a href="HotTakes.html">
+                    <svg class="icon">
+                        <use href="./assets/icons/sprites.svg#forum"></use>
+                    </svg>
+                    <span>Forum</span>
+                </a>
+
+                <a href="Friends.html">
+                    <svg class="icon">
+                        <use href="./assets/icons/sprites.svg#friends"></use>
+                    </svg>
+                    <span>Friend List</span>
+                </a>
+            </nav>
+
+            <div class="header-controls">
+                <label>
+                    <input type="checkbox" autocomplete="off" />
+                    Light mode
+                </label>
+            </div>
         </header>
-
-         <nav class = "nav-bar">
-            <svg class="icon">
-                <use href="../assets/icons/sprites.svg#account"></use>
-            </svg>
- 
-            <a href="Rankings.html">Make your own rankings</a>
-            <svg class="icon">
-                <use href="../assets/icons/sprites.svg#rankings"></use>
-            </svg>
-
-            <a href="HotTakes.html">Forum</a>
-
-            <a href="Friends.html"> Friend List</a>
-            <svg class="icon">
-                <use href="../assets/icons/sprites.svg#friends"></use>
-            </svg>
-        </nav>
 
         <h2>Friends</h2>
         <section class="card-grid">
             <div class="card">
-                <img src="../assets/optimus_prime.png"/>
+                <img src="./assets/optimus_prime.png"/>
                 <p>CartopMonster19</p>
             </div>
 
             <div class="card">
-                <img src="../assets/ninja_skin.png"/>
+                <img src="./assets/ninja_skin.png"/>
                 <p>FunkyMonky</p>
             </div>
         </section>

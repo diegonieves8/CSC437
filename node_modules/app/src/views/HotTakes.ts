@@ -1,4 +1,5 @@
 // packages/app/src/views/HotTakes.ts
+
 import { LitElement, html, css } from "lit";
 
 export class HotTakesView extends LitElement {

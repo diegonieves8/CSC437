@@ -1,75 +1,166 @@
 <!doctype html>
-<html>
-    <head>
-        <link rel="stylesheet" href="./style/auth-modal.css">
-      <script type="module" crossorigin src="/assets/modulepreload-polyfill-B5Qt9EMX.js"></script>
-      <script type="module" crossorigin src="/assets/auth-check-B-Eq97Em.js"></script>
-      <link rel="stylesheet" crossorigin href="/assets/rankings-BrF2sQxS.css">
-      <link rel="stylesheet" crossorigin href="/assets/pages-C3xHHh8r.css">
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+      <script type="module" crossorigin src="/assets/rankings-LwmphVo8.js"></script>
+      <link rel="modulepreload" crossorigin href="/assets/darkmode-CXfVOGe4.js">
+      <link rel="modulepreload" crossorigin href="/assets/auth-check-B-Eq97Em.js">
+      <link rel="stylesheet" crossorigin href="/assets/darkmode-C3xHHh8r.css">
+      <link rel="stylesheet" crossorigin href="/assets/rankings-CgsigvBt.css">
+      <link rel="stylesheet" crossorigin href="/assets/authmodal-D4BBtOxm.css">
     </head>
     <body>
         <header>
-            <a href = "index.html"><h1> VCT Rank</h1></a>
-            <!-- Planning to put the navs in header that will just have icons and 
-                will expand to show the text for what they will lead you to
-             -->
+            <a href="index.html"><h1>VCT Rank</h1></a>
+            
+            <nav class="nav-bar">
+                <a href="#" id="profile-link">
+                    <svg class="icon">
+                        <use href="/assets/sprites-YLQbnhnJ.svg#account"></use>       
+                    </svg>
+                    <span>Profile</span>
+                </a>
+     
+                <a href="./Rankings.html">
+                    <svg class="icon">
+                        <use href="/assets/sprites-YLQbnhnJ.svg#rankings"></use>
+                    </svg>
+                    <span>Rankings</span>
+                </a>
+
+                <a href="./HotTakes.html">
+                    <svg class="icon">
+                        <use href="/assets/sprites-YLQbnhnJ.svg#forum"></use>
+                    </svg>
+                    <span>Forum</span>
+                </a>
+
+                <a href="./Friends.html">
+                    <svg class="icon">
+                        <use href="/assets/sprites-YLQbnhnJ.svg#friends"></use>
+                    </svg>
+                    <span>Friend List</span>
+                </a>
+            </nav>
+
+            <div class="header-controls">
+                <label>
+                    <input type="checkbox" autocomplete="off" />
+                    Light mode
+                </label>
+            </div>
         </header>
 
-         <nav class = "nav-bar">
-            <svg class="icon">
-                <use href="../assets/icons/sprites.svg#account"></use>
-            </svg>
- 
-            <a href="Rankings.html">Make your own rankings</a>
-            <svg class="icon">
-                <use href="../assets/icons/sprites.svg#rankings"></use>
-            </svg>
-
-            <a href="HotTakes.html">Hot Takes</a>
-
-            <a href="Friends.html"> Friend List</a>
-            <svg class="icon">
-                <use href="../assets/icons/sprites.svg#friends"></use>
-            </svg>
-        </nav>
-
-        <a href="PlayerRankings.html"> To Player Rankings</a>
-        <a href="Compare.html">Rank with Friends</a>
-        
-        <h2>NA</h2>
-        <section class="first2-grid">
-            <div class="first2-card">
-                <p class ="number1"> 1.</p>
+        <div class="rankings-container">
+            <div class="rankings-header">
+                <h2>Create Your Team Rankings</h2>
+                <div class="rankings-actions">
+                    <a href="PlayerRankings.html" class="action-link">Player Rankings</a>
+                    <a href="Compare.html" class="action-link">Rank with Friends</a>
+                </div>
             </div>
 
-            <div class="first2-card">
-                <p class ="number2"> 2.</p>
-            </div>
-        </section>
-
-
-        <section class="rest-grid">
-            <div class="rest-card">
-                <p class ="number"> 3.</p>
+            <!-- Region Selector -->
+            <div class="region-selector">
+                <button class="region-btn active" data-region="all" data-slots="48">All Regions</button>
+                <button class="region-btn" data-region="na" data-slots="12">NA</button>
+                <button class="region-btn" data-region="eu" data-slots="12">EU</button>
+                <button class="region-btn" data-region="cn" data-slots="12">CN</button>
+                <button class="region-btn" data-region="pac" data-slots="12">PAC</button>
             </div>
 
-            <div class="rest-card">
-                <p class ="number"> 4.</p>
-            </div>
-            <div class="rest-card">
-                <p class ="number"> 5.</p>
+            <div class="current-region">
+                <h3 id="region-title">All Regions</h3>
+                <p id="slots-filled">0 / 48 teams ranked</p>
             </div>
 
-            <div class="rest-card">
-                <p class ="number"> 6.</p>
+            <!-- Ranking Slots -->
+            <div id="ranking-slots" class="ranking-slots">
+                <!-- Slots will be generated by JavaScript -->
             </div>
-        </section>
 
-        <section class="logos">
-            <img src= "../teamlogos/sen_logo.png" alt= "SEN Logo"/>
-            <img src="../teamlogos/nrg_logo.png" alt="NRG logo"/>
-            <img src="../teamlogos/mibr_logo.png" alt="MIBR logo"/>
-            <img src="../teamlogos/lev_logo.png" alt="LEV logo"/>
-        </section>
+            <!-- Team Logos Pool -->
+            <div class="teams-pool">
+                <div id="na-region-logos" class="team-logos">
+                    <div class="team-logo" draggable="true" data-team="100T">
+                        <img src="/assets/100t_logo-B_F-EYT8.png" alt="100T Logo"/>
+                        <span class="team-name">100 Thieves</span>
+                    </div>
+                    <div class="team-logo" draggable="true" data-team="C9">
+                        <img src="/assets/cloud9_logo-Bbiq4zKs.png" alt="C9 logo"/>
+                        <span class="team-name">Cloud9</span>
+                    </div>
+                    <div class="team-logo" draggable="true" data-team="ENVY">
+                        <img src="/assets/envy_logo-i_AXgcqS.png" alt="EMVY logo"/>
+                        <span class="team-name">ENVY</span>
+                    </div>
+                    <div class="team-logo" draggable="true" data-team="EG">
+                        <img src="/assets/eg_logo-Bqz6Ca8C.png" alt="EG logo"/>
+                        <span class="team-name">Evil Geniuses</span>
+                    </div>
+                    <div class="team-logo" draggable="true" data-team="FUR">
+                        <img src="/assets/furia_logo-CiU9nOnb.png" alt="FUR logo"/>
+                        <span class="team-name">Furia</span>
+                    </div>
+                    <div class="team-logo" draggable="true" data-team="G2">
+                        <img src="/assets/g2_logo-DmtC16L4.png" alt="G2 logo"/>
+                        <span class="team-name">G2 Esports</span>
+                    </div>
+                    <div class="team-logo" draggable="true" data-team="KRU">
+                        <img src="data:image/png;base64,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" alt="KRU Logo"/>
+                        <span class="team-name">KRU</span>
+                    </div>
+                    <div class="team-logo" draggable="true" data-team="LEV">
+                        <img src="/assets/lev_logo-1dXnUliQ.png" alt="LEV logo"/>
+                        <span class="team-name">Leviathan</span>
+                    </div>
+                    <div class="team-logo" draggable="true" data-team="LOUD">
+                        <img src="/assets/loud_logo-u1VoVOuD.png" alt="LOUD logo"/>
+                        <span class="team-name">LOUD</span>
+                    </div>
+                    <div class="team-logo" draggable="true" data-team="MIBR">
+                        <img src="/assets/mibr_logo-DL3BtU6Q.png" alt="MIBR logo"/>
+                        <span class="team-name">MIBR</span>
+                    </div>
+                    <div class="team-logo" draggable="true" data-team="NRG">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAAFACAMAAAD6TlWYAAAC91BMVEVHcEz6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6Rgr6RgpyIzexAAAA/XRSTlMAW/3/5kc36/n4/IELwv705c6tTyEFARVCeavQ6aps1z1F93MT0dmlGgk8icrv2jN+2D5VYB/f+tR7CrLwa5FnTizqYwI69bQPo3jzoRB66AaK7C8uJfuD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" alt="NRG logo"/>
+                        <span class="team-name">NRG</span>
+                    </div>
+                    <div class="team-logo" draggable="true" data-team="SEN">
+                        <img src="/assets/sen_logo-BYD9Rdx6.png" alt="SEN Logo"/>
+                        <span class="team-name">Sentinels</span>
+                    </div>
+                </div>
+
+                <div id="eu-region-logos" class="team-logos">
+                    <div class="team-logo" draggable="true" data-team="BBL">
+                        <img src="/assets/bbl_logo-C3OZmHPf.png" alt="BBL Logo"/>
+                        <span class="team-name">BBL</span>
+                    </div>
+                    <div class="team-logo" draggable="true" data-team="FNC">
+                        <img src="data:image/png;base64,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" alt="FNC Logo"/>
+                        <span class="team-name">Fnatic</span>
+                    </div>
+                    <p class="no-teams">More EU teams coming soon...</p>
+                </div>
+
+
+                <div id="cn-region-logos" class="team-logos">
+                    <p class="no-teams">CN teams coming soon...</p>
+                </div>
+
+                <div id="pac-region-logos" class="team-logos">
+                    <p class="no-teams">PAC teams coming soon...</p>
+                </div>
+
+                <div id="all-region-logos" class="team-logos active">
+                    <!-- All teams combined -->
+                </div>
+            </div>
+
+            <button class="save-rankings-btn">Save Rankings</button>
+        </div>
+
     </body>
 </html>

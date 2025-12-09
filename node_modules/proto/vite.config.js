@@ -13,6 +13,8 @@ export default defineConfig({
         hotTakes: resolve(__dirname, 'HotTakes.html'),
         rankings: resolve(__dirname, 'Rankings.html'),
         friends: resolve(__dirname, 'Friends.html'),
+        register: resolve(__dirname, 'register.html'),
+        profile: resolve(__dirname, 'Profile.html')
       },
     },
   },
