@@ -1,76 +1,436 @@
 <!doctype html>
-<html>
+<html lang="en">
     <head>
+        <meta charset="utf-8">
         <link rel="stylesheet" href="./style/reset.css">
         <link rel="stylesheet" href="./style/tokens.css">
         <link rel="stylesheet" href="./style/pages.css">
         <link rel="stylesheet" href="./style/Rankings.css">
-        <link rel="stylesheet" href="./style/auth-modal.css">
+        <link rel="stylesheet" href="./style/authmodal.css">
+        <script type="module" src="./components/darkmode.js"></script>
         <script type="module" src="./components/auth-check.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     </head>
     <body>
         <header>
-            <a href = "index.html"><h1> VCT Rank</h1></a>
-            <!-- Planning to put the navs in header that will just have icons and 
-                will expand to show the text for what they will lead you to
-             -->
+            <a href="index.html"><h1>VCT Rank</h1></a>
+            
+            <nav class="nav-bar">
+                <a href="#" id="profile-link">
+                    <svg class="icon">
+                        <use href="./assets/icons/sprites.svg#account"></use>       
+                    </svg>
+                    <span>Profile</span>
+                </a>
+     
+                <a href="./Rankings.html">
+                    <svg class="icon">
+                        <use href="./assets/icons/sprites.svg#rankings"></use>
+                    </svg>
+                    <span>Rankings</span>
+                </a>
+
+                <a href="./HotTakes.html">
+                    <svg class="icon">
+                        <use href="./assets/icons/sprites.svg#forum"></use>
+                    </svg>
+                    <span>Forum</span>
+                </a>
+
+                <a href="./Friends.html">
+                    <svg class="icon">
+                        <use href="./assets/icons/sprites.svg#friends"></use>
+                    </svg>
+                    <span>Friend List</span>
+                </a>
+            </nav>
+
+            <div class="header-controls">
+                <label>
+                    <input type="checkbox" autocomplete="off" />
+                    Light mode
+                </label>
+            </div>
         </header>
 
-         <nav class = "nav-bar">
-            <svg class="icon">
-                <use href="../assets/icons/sprites.svg#account"></use>
-            </svg>
- 
-            <a href="Rankings.html">Make your own rankings</a>
-            <svg class="icon">
-                <use href="../assets/icons/sprites.svg#rankings"></use>
-            </svg>
-
-            <a href="HotTakes.html">Hot Takes</a>
-
-            <a href="Friends.html"> Friend List</a>
-            <svg class="icon">
-                <use href="../assets/icons/sprites.svg#friends"></use>
-            </svg>
-        </nav>
-
-        <a href="PlayerRankings.html"> To Player Rankings</a>
-        <a href="Compare.html">Rank with Friends</a>
-        
-        <h2>NA</h2>
-        <section class="first2-grid">
-            <div class="first2-card">
-                <p class ="number1"> 1.</p>
+        <div class="rankings-container">
+            <div class="rankings-header">
+                <h2>Create Your Team Rankings</h2>
+                <div class="rankings-actions">
+                    <a href="PlayerRankings.html" class="action-link">Player Rankings</a>
+                    <a href="Compare.html" class="action-link">Rank with Friends</a>
+                </div>
             </div>
 
-            <div class="first2-card">
-                <p class ="number2"> 2.</p>
-            </div>
-        </section>
-
-
-        <section class="rest-grid">
-            <div class="rest-card">
-                <p class ="number"> 3.</p>
+            <!-- Region Selector -->
+            <div class="region-selector">
+                <button class="region-btn active" data-region="all" data-slots="48">All Regions</button>
+                <button class="region-btn" data-region="na" data-slots="12">NA</button>
+                <button class="region-btn" data-region="eu" data-slots="12">EU</button>
+                <button class="region-btn" data-region="cn" data-slots="12">CN</button>
+                <button class="region-btn" data-region="pac" data-slots="12">PAC</button>
             </div>
 
-            <div class="rest-card">
-                <p class ="number"> 4.</p>
-            </div>
-            <div class="rest-card">
-                <p class ="number"> 5.</p>
+            <div class="current-region">
+                <h3 id="region-title">All Regions</h3>
+                <p id="slots-filled">0 / 48 teams ranked</p>
             </div>
 
-            <div class="rest-card">
-                <p class ="number"> 6.</p>
+            <!-- Ranking Slots -->
+            <div id="ranking-slots" class="ranking-slots">
+                <!-- Slots will be generated by JavaScript -->
             </div>
-        </section>
 
-        <section class="logos">
-            <img src= "../teamlogos/sen_logo.png" alt= "SEN Logo"/>
-            <img src="../teamlogos/nrg_logo.png" alt="NRG logo"/>
-            <img src="../teamlogos/mibr_logo.png" alt="MIBR logo"/>
-            <img src="../teamlogos/lev_logo.png" alt="LEV logo"/>
-        </section>
+            <!-- Team Logos Pool -->
+            <div class="teams-pool">
+                <div id="na-region-logos" class="team-logos">
+                    <div class="team-logo" draggable="true" data-team="100T">
+                        <img src="./assets/teamlogos/na/100t_logo.png" alt="100T Logo"/>
+                        <span class="team-name">100 Thieves</span>
+                    </div>
+                    <div class="team-logo" draggable="true" data-team="C9">
+                        <img src="./assets/teamlogos/na/cloud9_logo.png" alt="C9 logo"/>
+                        <span class="team-name">Cloud9</span>
+                    </div>
+                    <div class="team-logo" draggable="true" data-team="ENVY">
+                        <img src="./assets/teamlogos/na/envy_logo.png" alt="EMVY logo"/>
+                        <span class="team-name">ENVY</span>
+                    </div>
+                    <div class="team-logo" draggable="true" data-team="EG">
+                        <img src="./assets/teamlogos/na/eg_logo.png" alt="EG logo"/>
+                        <span class="team-name">Evil Geniuses</span>
+                    </div>
+                    <div class="team-logo" draggable="true" data-team="FUR">
+                        <img src="./assets/teamlogos/na/furia_logo.png" alt="FUR logo"/>
+                        <span class="team-name">Furia</span>
+                    </div>
+                    <div class="team-logo" draggable="true" data-team="G2">
+                        <img src="./assets/teamlogos/na/g2_logo.png" alt="G2 logo"/>
+                        <span class="team-name">G2 Esports</span>
+                    </div>
+                    <div class="team-logo" draggable="true" data-team="KRU">
+                        <img src="./assets/teamlogos/na/kru_logo.png" alt="KRU Logo"/>
+                        <span class="team-name">KRU</span>
+                    </div>
+                    <div class="team-logo" draggable="true" data-team="LEV">
+                        <img src="./assets/teamlogos/na/lev_logo.png" alt="LEV logo"/>
+                        <span class="team-name">Leviathan</span>
+                    </div>
+                    <div class="team-logo" draggable="true" data-team="LOUD">
+                        <img src="./assets/teamlogos/na/loud_logo.png" alt="LOUD logo"/>
+                        <span class="team-name">LOUD</span>
+                    </div>
+                    <div class="team-logo" draggable="true" data-team="MIBR">
+                        <img src="./assets/teamlogos/na/mibr_logo.png" alt="MIBR logo"/>
+                        <span class="team-name">MIBR</span>
+                    </div>
+                    <div class="team-logo" draggable="true" data-team="NRG">
+                        <img src="./assets/teamlogos/na/nrg_logo.png" alt="NRG logo"/>
+                        <span class="team-name">NRG</span>
+                    </div>
+                    <div class="team-logo" draggable="true" data-team="SEN">
+                        <img src="./assets/teamlogos/na/sen_logo.png" alt="SEN Logo"/>
+                        <span class="team-name">Sentinels</span>
+                    </div>
+                </div>
+
+                <div id="eu-region-logos" class="team-logos">
+                    <div class="team-logo" draggable="true" data-team="BBL">
+                        <img src="./assets/teamlogos/eu/bbl_logo.png" alt="BBL Logo"/>
+                        <span class="team-name">BBL</span>
+                    </div>
+                    <div class="team-logo" draggable="true" data-team="FNC">
+                        <img src="./assets/teamlogos/eu/fnc_logo.png" alt="FNC Logo"/>
+                        <span class="team-name">Fnatic</span>
+                    </div>
+                    <p class="no-teams">More EU teams coming soon...</p>
+                </div>
+
+
+                <div id="cn-region-logos" class="team-logos">
+                    <p class="no-teams">CN teams coming soon...</p>
+                </div>
+
+                <div id="pac-region-logos" class="team-logos">
+                    <p class="no-teams">PAC teams coming soon...</p>
+                </div>
+
+                <div id="all-region-logos" class="team-logos active">
+                    <!-- All teams combined -->
+                </div>
+            </div>
+
+            <button class="save-rankings-btn">Save Rankings</button>
+        </div>
+
+        <script type="module">
+            // Profile link auth check
+            document.getElementById('profile-link').addEventListener('click', (e) => {
+                e.preventDefault();
+                window.checkAuthAndRedirect('./Profile.html');
+            });
+
+            // Global variables
+            let draggedElement = null;
+            let sourceSlot = null;
+            let currentSlotCount = 48;
+
+            // Generate ranking slots
+            function generateSlots(count) {
+                const container = document.getElementById('ranking-slots');
+                container.innerHTML = '';
+                
+                for (let i = 1; i <= count; i++) {
+                    const slot = document.createElement('div');
+                    slot.className = 'rank-slot';
+                    if (i === 1) slot.classList.add('gold');
+                    else if (i === 2) slot.classList.add('silver');
+                    else if (i === 3) slot.classList.add('bronze');
+                    
+                    slot.innerHTML = `
+                        <span class="rank-number">${i}</span>
+                        <div class="slot-content" data-slot="${i}">
+                            <span class="placeholder">Drop team here</span>
+                        </div>
+                    `;
+                    container.appendChild(slot);
+                }
+                
+                // Re-attach event listeners
+                attachSlotListeners();
+            }
+
+            // Attach drag and drop listeners to slots
+            function attachSlotListeners() {
+                document.querySelectorAll('.slot-content').forEach(slot => {
+                    slot.addEventListener('dragover', (e) => {
+                        e.preventDefault();
+                        e.dataTransfer.dropEffect = 'move';
+                        slot.classList.add('drag-over');
+                    });
+
+                    slot.addEventListener('dragleave', (e) => {
+                        slot.classList.remove('drag-over');
+                    });
+
+                    slot.addEventListener('drop', (e) => {
+                        e.preventDefault();
+                        slot.classList.remove('drag-over');
+
+                        if (draggedElement) {
+                            const existingTeam = slot.querySelector('.team-logo');
+                            
+                            if (existingTeam && sourceSlot) {
+                                sourceSlot.appendChild(existingTeam);
+                            } else if (existingTeam) {
+                                const region = document.querySelector('.region-btn.active').dataset.region;
+                                const pool = document.getElementById(`${region}-region-logos`);
+                                pool.appendChild(existingTeam);
+                            }
+
+                            const placeholder = slot.querySelector('.placeholder');
+                            if (placeholder) placeholder.remove();
+
+                            slot.appendChild(draggedElement);
+                            updateSlotCount();
+                        }
+                    });
+                });
+            }
+
+            // Attach drag listeners to team logos
+            function attachTeamListeners() {
+                document.querySelectorAll('.team-logo').forEach(logo => {
+                    logo.addEventListener('dragstart', (e) => {
+                        draggedElement = e.target.closest('.team-logo');
+                        sourceSlot = draggedElement.closest('.slot-content');
+                        e.dataTransfer.effectAllowed = 'move';
+                        draggedElement.classList.add('dragging');
+                    });
+
+                    logo.addEventListener('dragend', (e) => {
+                        draggedElement.classList.remove('dragging');
+                    });
+                });
+            }
+
+            // Update slot count display
+            function updateSlotCount() {
+                const filledSlots = document.querySelectorAll('.slot-content .team-logo').length;
+                const totalSlots = currentSlotCount;
+                document.getElementById('slots-filled').textContent = `${filledSlots} / ${totalSlots} teams ranked`;
+            }
+
+            // Region selector
+            document.querySelectorAll('.region-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.region-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const region = btn.dataset.region;
+                    currentSlotCount = parseInt(btn.dataset.slots);
+                    
+                    const titles = {
+                        all: 'All Regions',
+                        na: 'North America',
+                        eu: 'Europe',
+                        cn: 'China',
+                        pac: 'Pacific'
+                    };
+                    document.getElementById('region-title').textContent = titles[region];
+
+                    // Generate new slots
+                    generateSlots(currentSlotCount);
+
+                    // Show appropriate team logos
+                    document.querySelectorAll('.team-logos').forEach(logos => {
+                        logos.classList.remove('active');
+                    });
+                    document.getElementById(`${region}-region-logos`).classList.add('active');
+
+                    updateSlotCount();
+                });
+            });
+
+            // Save rankings with PDF download
+            document.querySelector('.save-rankings-btn').addEventListener('click', () => {
+                const rankings = [];
+                const slots = document.querySelectorAll('.slot-content');
+                
+                slots.forEach((slot, index) => {
+                    const team = slot.querySelector('.team-logo');
+                    if (team) {
+                        rankings.push({
+                            rank: index + 1,
+                            team: team.dataset.team
+                        });
+                    }
+                });
+
+                // Check if all slots are filled
+                if (rankings.length === currentSlotCount) {
+                    // Generate PDF
+                    const { jsPDF } = window.jspdf;
+                    const doc = new jsPDF();
+                    
+                    const region = document.querySelector('.region-btn.active').dataset.region;
+                    const regionTitles = {
+                        all: 'All Regions',
+                        na: 'North America',
+                        eu: 'Europe',
+                        cn: 'China',
+                        pac: 'Pacific'
+                    };
+                    const regionTitle = regionTitles[region];
+                    const username = window.getUsername() || 'Guest';
+                    const date = new Date().toLocaleDateString('en-US', { 
+                        year: 'numeric', 
+                        month: 'long', 
+                        day: 'numeric' 
+                    });
+
+                    // Title
+                    doc.setFontSize(24);
+                    doc.setTextColor(255, 70, 85);
+                    doc.text('VCT Team Rankings', 105, 20, { align: 'center' });
+                    
+                    // Region and user info
+                    doc.setFontSize(16);
+                    doc.setTextColor(0, 0, 0);
+                    doc.text(regionTitle, 105, 35, { align: 'center' });
+                    
+                    doc.setFontSize(10);
+                    doc.setTextColor(100, 100, 100);
+                    doc.text(`Created by: ${username}`, 105, 45, { align: 'center' });
+                    doc.text(`Date: ${date}`, 105, 52, { align: 'center' });
+
+                    // Draw line
+                    doc.setDrawColor(255, 70, 85);
+                    doc.setLineWidth(0.5);
+                    doc.line(20, 58, 190, 58);
+
+                    // Rankings list
+                    let yPosition = 70;
+                    doc.setFontSize(12);
+                    doc.setTextColor(0, 0, 0);
+
+                    rankings.forEach((ranking, index) => {
+                        // Medal colors for top 3
+                        if (ranking.rank === 1) {
+                            doc.setTextColor(255, 215, 0); // Gold
+                        } else if (ranking.rank === 2) {
+                            doc.setTextColor(192, 192, 192); // Silver
+                        } else if (ranking.rank === 3) {
+                            doc.setTextColor(205, 127, 50); // Bronze
+                        } else {
+                            doc.setTextColor(0, 0, 0); // Black
+                        }
+
+                        // Rank number
+                        doc.setFont('helvetica', 'bold');
+                        doc.text(`${ranking.rank}.`, 30, yPosition);
+                        
+                        // Team name
+                        doc.setFont('helvetica', 'normal');
+                        doc.text(ranking.team, 50, yPosition);
+
+                        yPosition += 10;
+
+                        // Add new page if needed
+                        if (yPosition > 270 && index < rankings.length - 1) {
+                            doc.addPage();
+                            yPosition = 20;
+                        }
+                    });
+
+                    // Footer
+                    const pageCount = doc.internal.getNumberOfPages();
+                    for (let i = 1; i <= pageCount; i++) {
+                        doc.setPage(i);
+                        doc.setFontSize(8);
+                        doc.setTextColor(150, 150, 150);
+                        doc.text(
+                            `Page ${i} of ${pageCount}`,
+                            105,
+                            290,
+                            { align: 'center' }
+                        );
+                    }
+
+                    // Save the PDF
+                    const filename = `vct-rankings-${region}-${new Date().toISOString().split('T')[0]}.pdf`;
+                    doc.save(filename);
+                    
+                    alert('Rankings downloaded as PDF successfully!');
+                } else {
+                    alert(`Please fill all ${currentSlotCount} slots before saving. Currently filled: ${rankings.length}`);
+                }
+            });
+
+            // Populate "All Regions" with all teams
+            function populateAllRegions() {
+                const allRegionsContainer = document.getElementById('all-region-logos');
+                const regions = ['na', 'eu', 'cn', 'pac'];
+                
+                regions.forEach(region => {
+                    const regionLogos = document.getElementById(`${region}-region-logos`);
+                    const teams = regionLogos.querySelectorAll('.team-logo');
+                    
+                    teams.forEach(team => {
+                        const clone = team.cloneNode(true);
+                        clone.draggable = true;
+                        allRegionsContainer.appendChild(clone);
+                    });
+                });
+                
+                attachTeamListeners();
+            }
+
+            // Initialize
+            generateSlots(48);
+            attachTeamListeners();
+            populateAllRegions();
+            updateSlotCount();
+        </script>
     </body>
 </html>

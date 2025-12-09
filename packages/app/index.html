@@ -13,10 +13,12 @@
   <body>
     <mu-history provides="vct:history">
       <mu-auth provides="vct:auth" redirect="/login">
-        <article class="page">
-          <vct-header></vct-header>
-          <mu-switch></mu-switch>
-        </article>
+        <mu-store provides="vct:model">
+          <article class="page">
+            <vct-header></vct-header>
+            <mu-switch></mu-switch>
+          </article>
+        </mu-store>
       </mu-auth>
     </mu-history>
 

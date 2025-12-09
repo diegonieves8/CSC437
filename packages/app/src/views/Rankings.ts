@@ -9,7 +9,7 @@ export class RankingsView extends LitElement {
     @import "/style/tokens.css";
     @import "/style/pages.css";
     @import "/style/Rankings.css";
-    @import "/style/auth-modal.css";
+    @import "/style/authmodal.css";
 
     :host {
       display: block;

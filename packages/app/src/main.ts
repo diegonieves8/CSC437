@@ -1,6 +1,9 @@
-import { Auth, define, History, Switch } from "@calpoly/mustang";
+import { Auth, define, History, Switch, Store } from "@calpoly/mustang";
 import { html } from "lit";
 import "./components/vct-header";
+import { Model, init } from "./model";
+import update from "./update";
+import { Msg } from "./messages";
 
 // import views so customElements are registered
 import "./views/HotTakes";
@@ -22,8 +25,6 @@ const routes = [
   {path: "/app/rankings", view: () => html`<rankings-view></rankings-view>`},
   { path: "/app/login", view: () => html`<login-view></login-view>` },
 
-  { path: "/app", view: () => html`<rankings-view><rankings-view>` },
-  { path: "/",  redirect: "/app" }
 ];
 
 
@@ -32,5 +33,10 @@ define({
   "mu-history": History.Provider,
   "mu-switch": class AppSwitch extends Switch.Element {
     constructor() { super(routes, "vct:history", "vct:auth"); }
+  },
+  "mu-store": class AppStore extends Store.Provider<Model, Msg> {
+    constructor() {
+      super(update, init, "vct:auth");
+    }
   }
 });

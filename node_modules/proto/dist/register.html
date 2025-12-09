@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+      <script type="module" crossorigin src="/assets/register-D9Ox09m9.js"></script>
+      <link rel="modulepreload" crossorigin href="/assets/darkmode-CXfVOGe4.js">
+      <link rel="stylesheet" crossorigin href="/assets/darkmode-C3xHHh8r.css">
+    </head>
+
+    <body>
+        <header>
+            <a href="index.html"><h1>VCT Rank</h1></a>
+            <div class="header-controls">
+                <label>
+                    <input type="checkbox" autocomplete="off" />
+                    Light mode
+                </label>
+            </div>
+        </header>
+
+        <div class="auth-container">
+            <div class="auth-box">
+                <h2>Create Account</h2>
+                
+                <form id="register-form">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input 
+                            type="text" 
+                            id="username" 
+                            name="username" 
+                            required
+                            minlength="3"
+                            maxlength="20"
+                            placeholder="Choose a username"
+                        >
+                        <span class="form-hint">3-20 characters</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            required
+                            minlength="6"
+                            placeholder="Create a password"
+                        >
+                        <span class="form-hint">Minimum 6 characters</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm Password</label>
+                        <input 
+                            type="password" 
+                            id="confirm-password" 
+                            name="confirm-password" 
+                            required
+                            placeholder="Confirm your password"
+                        >
+                    </div>
+
+                    <div id="error-message" class="error-message"></div>
+                    <div id="success-message" class="success-message"></div>
+
+                    <button type="submit" class="auth-btn">Create Account</button>
+                </form>
+
+                <p class="auth-link">
+                    Already have an account? <a href="./login.html">Sign in here</a>
+                </p>
+            </div>
+        </div>
+
+
+        <style>
+            .auth-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: calc(100vh - 100px);
+                padding: 2rem;
+            }
+
+            .auth-box {
+                background: var(--color-bg-header);
+                border: 2px solid var(--color-accent-primary);
+                border-radius: 12px;
+                padding: 2.5rem;
+                max-width: 450px;
+                width: 100%;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            }
+
+            .auth-box h2 {
+                margin: 0 0 0.5rem 0;
+                color: var(--color-text-header);
+                text-align: center;
+                font-size: 2rem;
+            }
+
+            .auth-subtitle {
+                text-align: center;
+                color: var(--color-text-default);
+                opacity: 0.8;
+                margin-bottom: 2rem;
+                font-size: 0.95rem;
+            }
+
+            .form-group {
+                margin-bottom: 1.5rem;
+            }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 0.5rem;
+                color: var(--color-text-default);
+                font-weight: 600;
+            }
+
+            .form-group input {
+                width: 100%;
+                padding: 0.75rem;
+                border: 1px solid var(--color-border);
+                border-radius: 6px;
+                background: var(--color-bg-page);
+                color: var(--color-text-default);
+                font-size: 14px;
+                transition: border-color 0.2s;
+            }
+
+            .form-group input:focus {
+                outline: none;
+                border-color: var(--color-accent-primary);
+            }
+
+            .form-hint {
+                display: block;
+                margin-top: 0.25rem;
+                font-size: 12px;
+                color: var(--color-text-default);
+                opacity: 0.6;
+            }
+
+            .error-message {
+                display: none;
+                color: var(--color-accent-primary);
+                background: rgba(255, 70, 85, 0.1);
+                padding: 0.75rem;
+                border-radius: 6px;
+                margin-bottom: 1rem;
+                text-align: center;
+                font-size: 14px;
+                border: 1px solid var(--color-accent-primary);
+            }
+
+            .success-message {
+                display: none;
+                color: #10b981;
+                background: rgba(16, 185, 129, 0.1);
+                padding: 0.75rem;
+                border-radius: 6px;
+                margin-bottom: 1rem;
+                text-align: center;
+                font-size: 14px;
+                border: 1px solid #10b981;
+            }
+
+            .auth-btn {
+                width: 100%;
+                padding: 0.75rem;
+                background: var(--color-accent-primary);
+                color: white;
+                border: none;
+                border-radius: 6px;
+                font-size: 16px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.2s;
+            }
+
+            .auth-btn:hover {
+                background: var(--color-accent-hover);
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(255, 70, 85, 0.4);
+            }
+
+            .auth-btn:active {
+                transform: translateY(0);
+            }
+
+            .auth-link {
+                text-align: center;
+                margin-top: 1.5rem;
+                color: var(--color-text-default);
+            }
+
+            .auth-link a {
+                color: var(--color-accent-primary);
+                text-decoration: none;
+                font-weight: 600;
+            }
+
+            .auth-link a:hover {
+                color: var(--color-accent-hover);
+            }
+        </style>
+    </body>
+</html>
