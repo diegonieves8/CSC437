@@ -20,12 +20,6 @@ export class HotTakesView extends View<Model, Msg> {
   }
 
   static styles = css`
-    @import "/style/reset.css";
-    @import "/style/tokens.css";
-    @import "/style/pages.css";
-    @import "/style/HotTakes.css";
-    @import "/style/authmodal.css";
-
     :host { display: block; }
   `;
 
